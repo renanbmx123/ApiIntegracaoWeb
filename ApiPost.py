@@ -1,4 +1,4 @@
-from typing import List, Set
+from typing import List
 from digi.xbee.devices import XBeeDevice
 
 # Endereco para enviar os dados
@@ -44,6 +44,7 @@ def main():
             if data != 0:
                 index = nodes.index(data[0])
                 # Formata os dados a serem enviados em uma array list
+                global data_arr
                 data_arr = [{"tag": tags[index], "id": str(data[0]), "tipo": "01",
                              "temperatura": str(data[12])},
                             {"tag": tags[index], 'id': data[0], 'tipo': '02', "umidade": data[11]},
@@ -66,7 +67,7 @@ def main():
                 print(obj)  # Uso para debug
                 # Faz o post dos dados da lista, no host destino. Usando o formato json.s
                 # print(requests.post(host, json=obj))
-            print("Mensagem Recebida")
+            print("Mensagem Recebida ")
 
         # Callback para recebimento de dados via porta serial.
         device.add_data_received_callback(data_receive_callback)
