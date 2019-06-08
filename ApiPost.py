@@ -1,3 +1,4 @@
+import requests
 from typing import List
 from digi.xbee.devices import XBeeDevice
 
@@ -66,8 +67,7 @@ def main():
             for obj in data_arr:
                 print(obj)  # Uso para debug
                 # Faz o post dos dados da lista, no host destino. Usando o formato json.s
-                # print(requests.post(host, json=obj))
-            print("Mensagem Recebida ")
+                print(requests.post(host, json=obj))
 
         # Callback para recebimento de dados via porta serial.
         device.add_data_received_callback(data_receive_callback)
