@@ -47,6 +47,7 @@ def main():
             #print(data[0])
             if data != 0:
                 index = nodes.index(data[0])
+
                 # Formata os dados a serem enviados em uma array list
                 global data_arr
                 data_arr = [{"tag": tags[index], "id": str(data[0]), "tipo": "01",
@@ -67,12 +68,11 @@ def main():
                             {"tag": tags[index], 'id': data[0], 'tipo': '09', "vibracao": data[14]}]
 
             # Percorre a lista para que possamos enviar os dados
-            #for obj in data_arr:
+            for obj in data_arr:
                 #print(obj)  # Uso para debug
                 # Faz o post dos dados da lista, no host destino. Usando o formato json.s
-                #print(requests.post(host, json=obj))
-            print("Recebido de" )
-            print(data[0])
+                print(requests.post(host, json=obj))
+
         # Callback para recebimento de dados via porta serial.
         device.add_data_received_callback(data_receive_callback)
         print("Waiting for data...\n")
