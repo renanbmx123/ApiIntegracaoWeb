@@ -20,18 +20,20 @@ tags = (
     "00000000000000202078D85A",
     "00000000000000202078AFB8",
     "00000000000000202078D856",
-    "00000000000000202078B524")
+    "00000000000000202078B524",
+    "000000000000000000000000")
 # Id dos nodos sensores.
 nodes = (
+    "5aeF",
+    "5a45",
+    "5bbc",
     "6eba",
-    "6ebc",
-    "6ebd",
-    "6ebe",
-    "6ebf",
-    "6eca",
-    "6ecb",
-    "6ecd",
-    "6ece")
+    "5ae9",
+    "6ebb",
+    "5bb8",
+    "5ae8",
+    "5ae3",
+    "5ae0")
 
 
 def main():
@@ -42,6 +44,7 @@ def main():
             #  Separa os dados em uma lista
             data: List[str] = str.split(xbee_message.data.decode(), ",", len(xbee_message.data))
             # Verifica se existem dados
+            #print(data[0])
             if data != 0:
                 index = nodes.index(data[0])
                 # Formata os dados a serem enviados em uma array list
@@ -64,11 +67,12 @@ def main():
                             {"tag": tags[index], 'id': data[0], 'tipo': '09', "vibracao": data[14]}]
 
             # Percorre a lista para que possamos enviar os dados
-            for obj in data_arr:
-                print(obj)  # Uso para debug
+            #for obj in data_arr:
+                #print(obj)  # Uso para debug
                 # Faz o post dos dados da lista, no host destino. Usando o formato json.s
-                print(requests.post(host, json=obj))
-
+                #print(requests.post(host, json=obj))
+            print("Recebido de" )
+            print(data[0])
         # Callback para recebimento de dados via porta serial.
         device.add_data_received_callback(data_receive_callback)
         print("Waiting for data...\n")
