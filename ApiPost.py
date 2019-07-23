@@ -24,7 +24,7 @@ tags = (
     "000000000000000000000000")
 # Id dos nodos sensores.
 nodes = (
-    "5aeF",
+    "5aef",
     "5a45",
     "5bbc",
     "6eba",
